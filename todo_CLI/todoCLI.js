@@ -5,3 +5,11 @@ action does. It would be best to implement each action as
 its own function.
 */
 
+const readline = require("readline");
+
+//Creating interface:
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+console.log('Welcome to Todo CLI! \n -------------------- ');
