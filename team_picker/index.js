@@ -8,8 +8,10 @@ app.use(logger("dev"));
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  res.render("welcome");
+  res.render("index");
 });
+
+
 
 const DOMAIN = "localhost";
 const PORT = "3000";
