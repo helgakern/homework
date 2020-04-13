@@ -1,20 +1,34 @@
-const express = require("express");
-const logger = require("morgan");
-
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const methodOverride = require('method-override');
 const app = express();
+const router = require('./routes/cohorts');
 
-app.use(logger("dev"));
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-app.set("view engine", "ejs");
-
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
-
-
-const DOMAIN = "localhost";
-const PORT = "3000";
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: false
+}));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride((req, res) => {
+  if (req.body && req.body._method) {
+    const method = req.body._method;
+    delete req.body._method;
+    return method;
+  }
+}));
+app.use('/', router);
+const PORT = process.env.PORT || 4000;
+const DOMAIN = 'localhost'
 app.listen(PORT, DOMAIN, () => {
-  console.log(`Server is listening on ${DOMAIN}:${PORT}`);
+  console.log(`Listening at http://${DOMAIN}:${PORT}`);
 });
+
+module.exports = app;

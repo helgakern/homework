@@ -11,7 +11,7 @@ exports.seed = function (knex) {
         {
           name: 'CodeCore',
           members: 'Tam, Ian, Miranda, Jordy, Brandon, Hindreen, Anson, Tamara',
-          logoUrl: 'https://codecore.ca/images/internal/cc-logo.png',
+          logoUrl: 'https://avatars.sched.co/3/42/8364210/avatar.jpg?623',
         },
         {
           name: 'TheOffice',
